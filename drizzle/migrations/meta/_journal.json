@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1795782958583,
+      "tag": "0000_migrate_arcade_players_and_saves",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795783270909,
+      "tag": "0001_harden_arcade_profile_and_save_access",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795783716844,
+      "tag": "0002_prepare_verified_legacy_player_restore",
+      "breakpoints": true
+    }
+  ]
+}

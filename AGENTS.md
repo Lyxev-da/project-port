@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Migration architecture
+- Keep the imported arcade engine in `src/arcade` as unchecked JavaScript, while retaining strict TypeScript for Cloud adapters and routes; this preserves the original engine without weakening TypeScript checks for application code.
+- Mount the canvas/audio game with a lazy import behind TanStack `ClientOnly`; browser-only initialization must never execute during server rendering.
+- Cloud Auth owns player identities, database roles own administrator access, and owner-only Cloud rows own signed-in saves; local storage is a guest save and an offline cache, never an authority for identity or roles.
+- Preserve the original Nostr namespace and relay protocol, but retain only the old developer public key for historical record verification; never embed developer passwords or a shared signing secret.

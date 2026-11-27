@@ -6,8 +6,9 @@
  *   src/routes/__root.tsx and name the family in a --font-* token in @theme inline below.
  */
 @import "tailwindcss" source(none);
-@source "../src";
 @import "tw-animate-css";
+@import "./arcade/arcade.css";
+@source "../src";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -74,14 +75,14 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --background: oklch(0.133 0.009 305);
+  --foreground: oklch(0.944 0.028 88);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.856 0.162 88);
+  --primary-foreground: oklch(0.22 0.035 65);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
@@ -153,4 +154,28 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+}
+
+.arcade-loading { min-height: 100dvh; display: grid; align-content: center; justify-items: center; gap: 16px; background: var(--ink); color: var(--gold); font-family: var(--fb); }
+.arcade-loading h1 { font-family: var(--fd); font-size: 44px; line-height: 1; text-align: center; }
+.cloud-save-indicator { position: fixed; left: 50%; bottom: 76px; transform: translateX(-50%); max-width: min(90%, 620px); z-index: 100; background: var(--plate); color: var(--gold); border: 3px solid var(--gold-lo); padding: 8px 12px; font-size: 13px; }
+.cloud-account-form { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; }
+.cloud-account-form.is-create { width: min(830px, 100%); grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1fr) auto; }
+.cloud-account-form label { min-width: 0; }
+.cloud-account-form input[type="email"], .cloud-account-form input[type="password"] { text-transform: none; }
+.account-recovery { grid-column: 1 / -1; justify-self: start; border: 0; padding: 3px 0; background: transparent; color: var(--dim); font-size: 11px; text-decoration: underline; text-underline-offset: 3px; }
+.account-recovery:hover { color: var(--gold); }
+.password-page { min-height: 100dvh; display: grid; place-items: center; padding: 24px; overflow: auto; }
+.password-form { width: min(440px, 100%); display: grid; gap: 20px; }
+.password-form h1 { color: var(--gold); font-family: var(--fd); font-size: 48px; line-height: 1; }
+.password-form h2 { font-family: var(--fd); font-size: 28px; }
+.password-form label { display: grid; gap: 8px; }
+.password-form input { width: 100%; padding: 12px; border: 3px solid var(--plate-hi); background: var(--pit); color: var(--bone); }
+.password-form a { color: var(--gold); text-decoration: underline; }
+@media (max-width: 760px) {
+  .cloud-account-form, .cloud-account-form.is-create { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .cloud-account-form .account-actions { grid-column: 1 / -1; }
+  .cloud-account-form.is-create label:first-of-type { grid-column: 1 / -1; }
+  .cloud-account-form input { min-width: 0; font-size: 19px; padding-inline: 8px; }
+  .account-recovery { font-size: 10px; }
 }

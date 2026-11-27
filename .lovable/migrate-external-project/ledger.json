@@ -1,0 +1,129 @@
+{
+  "source": "code-archive",
+  "capabilities": [
+    {
+      "capability": "code",
+      "source": "React 19 / Vite single-page game",
+      "outcome": "migrate",
+      "status": "verified",
+      "next_action": "All original game modules migrated behind a client-only TanStack boundary; desktop/mobile screenshots and 10 tests pass."
+    },
+    {
+      "capability": "schema",
+      "source": "Browser-local accounts and two mode saves",
+      "outcome": "migrate",
+      "status": "verified",
+      "next_action": "Cloud profiles, protected roles, per-mode saves, private signing keys, and private legacy identity/save/role staging applied with grants and RLS."
+    },
+    {
+      "capability": "records",
+      "source": "No save exports bundled",
+      "outcome": "migrate",
+      "status": "pending",
+      "next_action": "Attach original Vault \u2192 Export Save JSON files. No old saves were bundled. Filter supplied exports before reading or importing their records."
+    },
+    {
+      "capability": "auth identities",
+      "source": "Local username registry; no user export or emails",
+      "outcome": "migrate",
+      "status": "pending",
+      "next_action": "Email/password login and Cloud restoration tested with two temporary verified accounts. Attach original player IDs, names, email addresses, and roles; verify their email-link and new-password flow after import. Old passwords and sessions do not transfer."
+    },
+    {
+      "capability": "authorization",
+      "source": "Client-local developer access",
+      "outcome": "replace",
+      "status": "partially_verified",
+      "next_action": "Cross-player profile, save, role and signing-key reads/writes and self-promotion were blocked in live tests. Admin actions use a server role check. Provide verified developer-owner identity to restore developer access and verify admin-only actions."
+    },
+    {
+      "capability": "uploaded file bytes",
+      "source": "No binary files bundled; procedural textures and audio",
+      "outcome": "preserve",
+      "status": "verified",
+      "next_action": "No source binary uploads existed. Procedural pixel textures, icons, canvas effects, and Web Audio modules preserved; original game interactions render without runtime errors."
+    },
+    {
+      "capability": "external providers",
+      "source": "Public Nostr relays and signed leaderboard events",
+      "outcome": "preserve",
+      "status": "partially_verified",
+      "next_action": "Existing Nostr namespace and all nine relay URLs retained. Existing leaderboard loaded from 8/9 relays. Verification suppressed outgoing test events to avoid polluting the public board; confirm the first real player score after cutover. Historical developer public key retained for reads only; shared signing secret removed, so a new verified developer identity does not inherit the historical DEV badge/key."
+    },
+    {
+      "capability": "public endpoints",
+      "source": "No application HTTP endpoints detected",
+      "outcome": "not_applicable",
+      "status": "verified",
+      "next_action": "None."
+    },
+    {
+      "capability": "callbacks",
+      "source": "No source auth callbacks",
+      "outcome": "migrate",
+      "status": "pending",
+      "next_action": "Email verification returns to the arcade; first-visit email links return to /reset-password. UI implemented; original imported-user email ownership/password setup requires the missing identity export and user interaction."
+    },
+    {
+      "capability": "webhooks",
+      "source": "None detected",
+      "outcome": "not_applicable",
+      "status": "verified",
+      "next_action": "None."
+    },
+    {
+      "capability": "schedules",
+      "source": "None detected",
+      "outcome": "not_applicable",
+      "status": "verified",
+      "next_action": "None."
+    },
+    {
+      "capability": "secrets",
+      "source": "No environment secrets; embedded developer passwords detected",
+      "outcome": "replace",
+      "status": "verified",
+      "next_action": "No source environment secrets required. Embedded developer passwords and shared private signing material were not copied. Cloud owns private per-player signing keys with owner-only access."
+    },
+    {
+      "capability": "cutover",
+      "source": "No existing domain supplied",
+      "outcome": "pending",
+      "status": "pending",
+      "next_action": "Publish when ready, switch existing links, and verify email return URLs and the first real leaderboard publication. No existing custom domain was supplied."
+    },
+    {
+      "capability": "verification",
+      "source": "Game modes, saves, upgrades, quests, dex, leaderboard and auth",
+      "outcome": "verify",
+      "status": "partially_verified",
+      "next_action": "Passed 10 tests; desktop and 390px mobile Standard/Hardcore gameplay, gift, upgrade, Cloud create/read/update, reload restoration, JSON export/import, sign-out, cross-user isolation and cleanup all passed. Latest preview build OK. Original-user first-login and real leaderboard publish remain pending."
+    }
+  ],
+  "inspection_summary": {
+    "source_stack": "React 19 / Vite / Tailwind single-page static arcade",
+    "routes": [
+      "/"
+    ],
+    "database": "No server database; localStorage profiles, saves and signed leaderboard cache",
+    "bundled_records": 0,
+    "providers": [
+      "Nostr public relays",
+      "Google Fonts"
+    ],
+    "dependencies_added": [
+      "@noble/curves@1.9.7",
+      "@noble/hashes@1.8.0"
+    ],
+    "optional_public_variable_names": [
+      "VITE_BOARD_NS",
+      "VITE_BOARD_RELAYS"
+    ],
+    "warnings": [
+      "No player identities or saves bundled.",
+      "Source browser-only authentication and embedded developer credentials replaced, not retained.",
+      "Historical developer signing identity is read-only."
+    ],
+    "security_review": "Private migration tables intentionally have no browser policies; name-availability function intentionally exposes only a boolean. No private emails/profiles are publicly readable."
+  }
+}
